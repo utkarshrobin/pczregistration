@@ -121,8 +121,8 @@ async def check_join(update:Update,context):
     ]
 
     await query.message.reply_text(
-        "🏏 Register yourself as a player\n\n"
-        "⚠ VC and RET don't register\n\n"
+        "🏏 Register yourself as a player and be able to participate in auction as a player :) \n\n"
+        " vc and ret. don't register \n\n"
         "Click below:",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
@@ -146,7 +146,7 @@ async def register(update:Update,context):
     if already:
 
         return await query.message.reply_text(
-            "✅ You already registered."
+            "✅ You already registered. Check your registration at @pczofficial"
         )
 
     data={
@@ -171,7 +171,7 @@ async def register(update:Update,context):
     )
 
     await query.message.reply_text(
-        "✅ Registration successful."
+        "✅ Registration successful. Check your registration at @pczofficial , and stay tuned :))"
     )
 
 
