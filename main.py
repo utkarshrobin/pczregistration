@@ -8,8 +8,7 @@ from telegram import (
 from telegram.ext import (
     Application,
     CommandHandler,
-    CallbackQueryHandler,
-    ContextTypes
+    CallbackQueryHandler
 )
 
 from pymongo import MongoClient
@@ -60,7 +59,9 @@ async def start(update:Update,context):
         if already_registered:
 
             return await update.message.reply_text(
-                "🏏✨ You're in already!\n\n✅ Registered"
+                "🏏✨ You are already registered!\n\n"
+                "📢 Check your registration at\n"
+                "@pczofficial"
             )
 
         keyboard=[
@@ -78,7 +79,6 @@ async def start(update:Update,context):
             "👇 Ready?",
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
-
 
 
     keyboard=[
@@ -99,7 +99,7 @@ async def start(update:Update,context):
 
         [
             InlineKeyboardButton(
-                "✅ I Joined",
+                "✅ I Have Joined",
                 callback_data="check_join"
             )
         ]
@@ -107,7 +107,7 @@ async def start(update:Update,context):
 
     await update.message.reply_text(
         "🏏 Welcome Champion!\n\n"
-        "⚡ Join below first\n"
+        "⚡ Join both below first\n"
         "👇 Then tap button",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
@@ -182,10 +182,23 @@ async def check_join(update:Update,context):
     ]
 
     await query.message.reply_text(
-        "🏏 You're verified 🎉\n\n"
+
+        "🏆 A mega tournament is going on by Panchayat Zone "
+        "@panchayatgamezone 🔥\n\n"
+
+        "🥇 1st Team Prize: ₹2000\n"
+        "🥈 Runner Up Prize: ₹1000\n"
+        "🏏 Best Batter Award\n"
+        "🎯 Best Bowler Award\n"
+        "🎁 And much more awaits!\n\n"
+
         "⚠️ VC + RET don't register\n\n"
-        "👇 Tap below",
-        reply_markup=InlineKeyboardMarkup(keyboard)
+
+        "👇 Register below now",
+
+        reply_markup=InlineKeyboardMarkup(
+            keyboard
+        )
     )
 
 
@@ -197,7 +210,6 @@ async def register(update:Update,context):
     user=query.from_user
 
     await query.answer()
-
 
     blocked=banned.find_one(
         {
@@ -221,7 +233,9 @@ async def register(update:Update,context):
     if already:
 
         return await query.message.reply_text(
-            "✅ Already registered 🏏"
+            "✅ You have already registered!\n\n"
+            "📢 Check your registration here:\n"
+            "@pczofficial"
         )
 
 
@@ -243,10 +257,13 @@ async def register(update:Update,context):
 
 
     text=(
+
         "🎉 NEW PLAYER\n\n"
+
         f"👤 {user.first_name}\n"
         f"🔗 {username}\n"
         f"🆔 {user.id}"
+
     )
 
 
@@ -265,9 +282,13 @@ async def register(update:Update,context):
 
 
     await query.message.reply_text(
-        "🎉 Registration Success\n\n🏏 Welcome!"
-    )
 
+        "🎉 Registration Successful!\n\n"
+        "🏏 Welcome Champion\n\n"
+        "📢 View your registration at:\n"
+        "@pczofficial"
+
+    )
 
 
 # ========= PLAYER LIST =========
@@ -275,7 +296,6 @@ async def register(update:Update,context):
 async def showlist(update:Update,context):
 
     if update.effective_user.id not in OWNER_IDS:
-
         return
 
 
@@ -295,11 +315,9 @@ async def showlist(update:Update,context):
 
 
     for i in range(
-
         0,
         len(all_users),
         chunk_size
-
     ):
 
 
@@ -310,14 +328,14 @@ async def showlist(update:Update,context):
 
 
         for n,user in enumerate(
-
             chunk,
             start=1
-
         ):
 
 
-            uname=user.get("username")
+            uname=user.get(
+                "username"
+            )
 
             if uname:
                 uname="@"+uname
@@ -326,8 +344,11 @@ async def showlist(update:Update,context):
 
 
             msg+=(
+
                 f"{n}. {user['first_name']}\n"
-                f"🔗 {uname}\n\n"
+                f"🔗 {uname}\n"
+                f"🆔 {user['user_id']}\n\n"
+
             )
 
 
@@ -336,14 +357,11 @@ async def showlist(update:Update,context):
         )
 
 
-
 # ========= DELETE =========
 
 async def delete(update:Update,context):
 
-
     if update.effective_user.id not in OWNER_IDS:
-
         return
 
 
@@ -417,13 +435,12 @@ async def delete(update:Update,context):
 
 
     await update.message.reply_text(
-        f"🗑 Deleted {user['first_name']}\n🚫 Registration banned"
+        f"🗑 Deleted {user['first_name']}\n"
+        "🚫 User banned from registration"
     )
 
 
-
 # ========= MAIN =========
-
 
 app=Application.builder().token(
     BOT_TOKEN
@@ -437,14 +454,12 @@ app.add_handler(
     )
 )
 
-
 app.add_handler(
     CommandHandler(
         "showlist",
         showlist
     )
 )
-
 
 app.add_handler(
     CommandHandler(
@@ -453,7 +468,6 @@ app.add_handler(
     )
 )
 
-
 app.add_handler(
     CallbackQueryHandler(
         check_join,
@@ -461,14 +475,12 @@ app.add_handler(
     )
 )
 
-
 app.add_handler(
     CallbackQueryHandler(
         register,
         pattern="register"
     )
 )
-
 
 print("Bot Started 🔥")
 
