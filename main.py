@@ -60,7 +60,7 @@ async def start(update:Update,context:ContextTypes.DEFAULT_TYPE):
     ]
 
     await update.message.reply_text(
-        "🏏 Welcome!\n\nJoin both below then click I Have Joined.",
+        "🏏 Welcome!\n\nJoin both below then click I Have Joined.\n @The_boss_returns is randi se dur rehna iski maa chud rahi tour dekh ke !",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
@@ -122,7 +122,7 @@ async def check_join(update:Update,context):
 
     await query.message.reply_text(
         "🏏 Register yourself as a player and be able to participate in auction as a player :) \n\n"
-        " Prizes for both 1st ranked and runner up team and best batter .. blah blah blah awaits \nvc and ret. don't register \n\n"
+        " Prizes for both 1st ranked and runner up team and best batter .. blah blah blah awaits \nvc and ret. don't register \n@The_boss_returns iski mkc\n"
         "Click below:",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
@@ -146,7 +146,7 @@ async def register(update:Update,context):
     if already:
 
         return await query.message.reply_text(
-            "✅ You already registered. Check your registration at @pczofficial"
+            "✅ You already registered. Check your registration at @pczofficial\n @The_boss_returns iski mkc rahegi isse dur rehna "
         )
 
     data={
@@ -159,7 +159,7 @@ async def register(update:Update,context):
     users.insert_one(data)
 
     text=(
-        "🏏 NEW PLAYER REGISTERED\n\n"
+        "🏏 NEW PLAYER REGISTERED\nCall +918742944187 if any query !!\n"
         f"👤 Name: {user.first_name}\n"
         f"🔗 Username: @{user.username}\n"
         f"🆔 ID: {user.id}"
@@ -171,7 +171,7 @@ async def register(update:Update,context):
     )
 
     await query.message.reply_text(
-        "✅ Registration successful. Check your registration at @pczofficial , and stay tuned :))"
+        "✅ Registration successful. Check your registration at @pczofficial , and stay tuned :))\n if any problem call +918742944187 "
     )
 
 
