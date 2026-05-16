@@ -192,7 +192,7 @@ async def check_join(update:Update,context):
         "🎯 Best Bowler Award\n"
         "🎁 And much more awaits!\n\n"
 
-        "⚠️ VC + RET don't register\n\n"
+        " VC aur CAP don't register\n\n"
 
         "👇 Register below now",
 
@@ -258,11 +258,11 @@ async def register(update:Update,context):
 
     text=(
 
-        "🎉 NEW PLAYER\n\n"
+        "🎉 NEW PLAYER REGISTRATION \n\n"
 
-        f"👤 {user.first_name}\n"
-        f"🔗 {username}\n"
-        f"🆔 {user.id}"
+        f"👤Name: {user.first_name}\n"
+        f"🔗Username: {username}\n"
+        f"🆔Id num: {user.id}"
 
     )
 
