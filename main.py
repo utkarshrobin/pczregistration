@@ -19,7 +19,7 @@ BOT_TOKEN=os.getenv("BOT_TOKEN")
 MONGO_URI="mongodb+srv://heliumrobin:crickzone@cluster0.gdlyiz9.mongodb.net/?appName=Cluster0"
 
 CHANNEL_USERNAME="@pczofficial"
-GROUP_USERNAME="@elitexplays"
+GROUP_USERNAME="@Panchayatgamezone"
 
 CHANNEL_ID=-1003773332497
 # registration data forwarded here
@@ -122,7 +122,7 @@ async def check_join(update:Update,context):
 
     await query.message.reply_text(
         "🏏 Register yourself as a player and be able to participate in auction as a player :) \n\n"
-        " vc and ret. don't register \n\n"
+        " Prizes for both 1st ranked and runner up team and best batter .. blah blah blah awaits \nvc and ret. don't register \n\n"
         "Click below:",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
